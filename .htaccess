@@ -1,0 +1,15 @@
+# Module Rewrite url
+RewriteEngine On
+
+# Remove file extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [QSA,L]
+
+# Change URL without GET ?type=
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?type=$1 [QSA,L]
+
+# No directory listing
+Options -Indexes
